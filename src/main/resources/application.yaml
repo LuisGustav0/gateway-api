@@ -1,0 +1,27 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ead-gateway-api
+  cloud:
+    gateway:
+      # Rotas do gateway
+      # lb: Load Balancer
+      routes:
+       - id: auth-user-api
+         uri: lb://ead-auth-user-api
+         predicates:
+          - Path=/ead-auth-user/**
+       - id: course-api
+         uri: lb://ead-course-api
+         predicates:
+          - Path=/ead-course/**
+
+# Eureka server
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
