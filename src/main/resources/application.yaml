@@ -17,6 +17,10 @@ spring:
          uri: lb://ead-course-api
          predicates:
           - Path=/ead-course/**
+       - id: notification-api
+         uri: lb://ead-notification-api
+         predicates:
+          - Path=/ead-notification/**
 
 # Eureka server
 eureka:
